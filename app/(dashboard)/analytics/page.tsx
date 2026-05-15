@@ -18,7 +18,7 @@ export default async function AnalyticsPage() {
 
   if (!business) redirect("/onboarding");
 
-  const [{ data: analytics30d }, { data: leadsByStatus }, { data: totalLeads }, { data: totalAppointments }] = await Promise.all([
+  const [{ data: analytics30d }, { data: leadsByStatus }, { count: totalLeads }, { count: totalAppointments }] = await Promise.all([
     supabase
       .from("analytics_daily")
       .select("*")

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Bell, Search, User, LogOut, Settings, ChevronsUpDown } from "lucide-react";
+import { Bell, Search, User as UserIcon, LogOut, Settings, ChevronsUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {

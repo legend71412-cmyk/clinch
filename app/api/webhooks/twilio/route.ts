@@ -3,6 +3,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { verifyTwilioWebhook } from "@/lib/twilio/client";
 import { getOpenAIClient } from "@/lib/openai/client";
 import { buildSystemPrompt } from "@/lib/openai/prompts";
+import type { ChatCompletionMessageParam } from "openai/resources/chat/completions";
 
 export const runtime = "nodejs";
 
@@ -149,10 +150,10 @@ async function generateAndSendAIReply(
     const openai = getOpenAIClient(business.openai_api_key ?? undefined);
     const systemPrompt = buildSystemPrompt(business);
 
-    const history = (recentMessages ?? [])
+    const history: ChatCompletionMessageParam[] = (recentMessages ?? [])
       .reverse()
-      .map((m: any) => ({
-        role: m.direction === "outbound" ? "assistant" : "user",
+      .map((m: { direction: string; content: string }) => ({
+        role: (m.direction === "outbound" ? "assistant" : "user") as "assistant" | "user",
         content: m.content,
       }));
 
