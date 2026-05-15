@@ -1,7 +1,7 @@
 import Stripe from "stripe";
 import type { PricingTier, SubscriptionTier } from "@/types";
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "placeholder", {
   apiVersion: "2025-02-24.acacia",
   typescript: true,
 });
